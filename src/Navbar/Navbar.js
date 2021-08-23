@@ -6,7 +6,6 @@ import memories from '../images/memories.png'
 import useStyles from './styles.js'
 import decode from 'jwt-decode'
 
-
 const Navbar = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
     const classes = useStyles()

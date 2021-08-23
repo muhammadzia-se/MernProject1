@@ -1,14 +1,17 @@
-import { AUTH } from '../constants/actionTypes.js'
+import { AUTH, SUCCESS, ERROR } from '../constants/actionTypes.js'
 // importing Apis to complete the action process
 import  * as api from '../api'
 
 export const signin = (formData, history) => async(dispatch) => {
     try {
         const { data }  = await api.signIn(formData)
+        console.log(data);
         dispatch({ type:AUTH, data})
+        dispatch({ type:SUCCESS, payload: {alert: true, message:"Successfully LoggedIn", severity: 'success'}})
         history.push('/')
     } catch (error) {
-        console.log(error);
+        const message = error.response.data.message
+        dispatch({ type:ERROR, payload: {alert: true, message, severity: 'error'}})
     }
 }
 
